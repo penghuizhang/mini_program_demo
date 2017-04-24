@@ -1,0 +1,32 @@
+<import src="/pages/movie/movie-list/movie-list-template.wxml" />
+<import src="/pages/movie/movie-grid/movie-grid.wxml" />
+
+<!--数据优先-->
+
+<!--该页面使用数据绑定思想，将数据绑定思想完美的体现出来，使用wx:if方法，通过后台传送的数据，实现前台页面的动态绑定，控制页面显示效果，通过该页面编码，可以将多个模块组合，形成两种不同的情况进行显示-->
+
+<view class="search">
+  <icon type="search" class="search-img" size="13" color="#405f80" />
+  <input type="text" placeholder="血战钢锯岭、你的名字" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindBlur"/>
+
+  <!--当搜索电影后，点击关闭，触发时间，该图标和下面的电影简介是一起出现-->
+  <image wx:if="{{searchPanelShow}}" src="/imgs/icon/xx.png" class="xx-img" bindtap="onCancelImgTap"></image>
+</view>
+
+<!--显示三种不同电影分类，当containerShow=true时，显示三种电影分类-->
+<view class="container" wx:if="{{containerShow}}">
+  <view class="movies-template">
+    <template is="moveListTemplate" data="{{...inTheaters}}" />
+  </view>
+  <view class="movies-template">
+    <template is="moveListTemplate" data="{{...comingSoon}}" />
+  </view>
+  <view>
+    <template is="moveListTemplate" data="{{...top250}}" />
+  </view>
+</view>
+
+<!--显示电影模板简介，当进行搜索时，通过数据绑定判断，隐藏电影信息-->
+<view class="search-panel" wx:if="{{searchPanelShow}}">
+  <template is="movieGridTemplate" data="{{...searchResult}}" />
+</view>

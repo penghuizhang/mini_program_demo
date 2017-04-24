@@ -1,0 +1,7 @@
+<view class="container">
+    <image class="avatar" src="/imgs/5.png"></image>
+    <text class="motto">人生的意义</text>
+    <view class="journey-container" bindtap="onbutton">
+        <text class="journey">欢迎进入</text>
+    </view>
+</view>
